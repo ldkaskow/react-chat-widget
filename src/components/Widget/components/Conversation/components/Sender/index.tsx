@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { FiPaperclip } from 'react-icons/fi';
 
 import { GlobalState } from 'src/store/types';
 
@@ -35,6 +36,7 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
         autoComplete="off"
         onChange={onTextInputChange}
       />
+      <FiPaperclip />
       <button type="submit" className="rcw-send">
         <img src={send} className="rcw-send-icon" alt={buttonAlt} />
       </button>
