@@ -17,6 +17,7 @@ type Props = {
   titleAvatar?: string;
   subtitle: string;
   onSendMessage: AnyFunction;
+  handleClickAttachmentLauncher?: AnyFunction;
   onToggleConversation: AnyFunction;
   senderPlaceHolder: string;
   onQuickButtonClicked: AnyFunction;
@@ -40,6 +41,7 @@ function WidgetLayout({
   titleAvatar,
   subtitle,
   onSendMessage,
+  handleClickAttachmentLauncher,
   onToggleConversation,
   senderPlaceHolder,
   onQuickButtonClicked,
@@ -74,7 +76,7 @@ function WidgetLayout({
       messageRef.current = null;
     }
   }, [showChat])
-  
+
   const eventHandle = evt => {
     if(evt.target && evt.target.className === 'rcw-message-img') {
       const { src, alt, naturalWidth, naturalHeight } = (evt.target as HTMLImageElement);
@@ -131,6 +133,7 @@ function WidgetLayout({
           onTextInputChange={onTextInputChange}
           sendButtonAlt={sendButtonAlt}
           showTimeStamp={showTimeStamp}
+          handleClickAttachmentLauncher={handleClickAttachmentLauncher}
         />
       }
       {customLauncher ?

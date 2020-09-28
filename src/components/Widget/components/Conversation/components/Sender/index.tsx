@@ -5,6 +5,7 @@ import { FiPaperclip } from 'react-icons/fi';
 import { GlobalState } from 'src/store/types';
 
 const send = require('../../../../../../../assets/send_button.svg') as string;
+import { AnyFunction } from '../../../../../../utils/types';
 
 import './style.scss';
 
@@ -15,9 +16,10 @@ type Props = {
   sendMessage: (event: any) => void;
   buttonAlt: string;
   onTextInputChange?: (event: any) => void;
+  handleClickAttachmentLauncher?: AnyFunction;
 }
 
-function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt }: Props) {
+function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt, handleClickAttachmentLauncher }: Props) {
   const showChat = useSelector((state: GlobalState) => state.behavior.showChat);
   const inputRef = useRef(null);
   // @ts-ignore
@@ -36,7 +38,7 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
         autoComplete="off"
         onChange={onTextInputChange}
       />
-      <FiPaperclip />
+      <FiPaperclip style={{width: '30px', padding: '0px 5px', height: '25px', cursor: 'pointer'}} onClick={handleClickAttachmentLauncher} />
       <button type="submit" className="rcw-send">
         <img src={send} className="rcw-send-icon" alt={buttonAlt} />
       </button>

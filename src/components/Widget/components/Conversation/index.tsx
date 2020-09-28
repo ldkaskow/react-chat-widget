@@ -19,6 +19,7 @@ type Props = {
   autofocus: boolean;
   className: string;
   sendMessage: AnyFunction;
+  handleClickAttachmentLauncher?: AnyFunction;
   toggleChat: AnyFunction;
   profileAvatar?: string;
   titleAvatar?: string;
@@ -37,6 +38,7 @@ function Conversation({
   autofocus,
   className,
   sendMessage,
+  handleClickAttachmentLauncher,
   toggleChat,
   profileAvatar,
   titleAvatar,
@@ -63,6 +65,7 @@ function Conversation({
         autofocus={autofocus}
         onTextInputChange={onTextInputChange}
         buttonAlt={sendButtonAlt}
+        handleClickAttachmentLauncher={handleClickAttachmentLauncher}
       />
     </div>
   );

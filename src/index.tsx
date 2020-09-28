@@ -9,6 +9,7 @@ import { AnyFunction } from './utils/types';
 
 type Props = {
   handleNewUserMessage: AnyFunction;
+  handleClickAttachmentLauncher?: AnyFunction;
   handleQuickButtonClicked?: AnyFunction;
   title?: string;
   titleAvatar?: string;
@@ -41,6 +42,7 @@ function ConnectedWidget({
   profileAvatar,
   launcher,
   handleNewUserMessage,
+  handleClickAttachmentLauncher,
   handleQuickButtonClicked,
   handleTextInputChange,
   chatId,
@@ -59,6 +61,7 @@ function ConnectedWidget({
         titleAvatar={titleAvatar}
         subtitle={subtitle}
         handleNewUserMessage={handleNewUserMessage}
+        handleClickAttachmentLauncher={handleClickAttachmentLauncher}
         handleQuickButtonClicked={handleQuickButtonClicked}
         senderPlaceHolder={senderPlaceHolder}
         profileAvatar={profileAvatar}

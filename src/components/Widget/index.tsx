@@ -17,6 +17,7 @@ type Props = {
   autofocus: boolean;
   customLauncher?: AnyFunction;
   handleNewUserMessage: AnyFunction;
+  handleClickAttachmentLauncher?: AnyFunction;
   handleQuickButtonClicked?: AnyFunction;
   handleTextInputChange?: (event: any) => void;
   chatId: string;
@@ -40,6 +41,7 @@ function Widget({
   autofocus,
   customLauncher,
   handleNewUserMessage,
+  handleClickAttachmentLauncher,
   handleQuickButtonClicked,
   handleTextInputChange,
   chatId,
@@ -60,9 +62,9 @@ function Widget({
   const handleMessageSubmit = (event) => {
     event.preventDefault();
     const userInput = event.target.message.value;
-    
-    if (!userInput.trim()) {      
-      return;      
+
+    if (!userInput.trim()) {
+      return;
     }
 
     handleSubmit?.(userInput);
@@ -80,6 +82,7 @@ function Widget({
     <WidgetLayout
       onToggleConversation={toggleConversation}
       onSendMessage={handleMessageSubmit}
+      handleClickAttachmentLauncher={handleClickAttachmentLauncher}
       onQuickButtonClicked={onQuickButtonClicked}
       title={title}
       titleAvatar={titleAvatar}
