@@ -5,6 +5,7 @@ import { createNewMessage, createLinkSnippet, createComponentMessage } from '../
 import { MESSAGE_SENDER } from '../../constants';
 import {
   MessagesActions,
+  SAVE_WORKING_MESSAGE,
   ADD_NEW_USER_MESSAGE,
   ADD_NEW_RESPONSE_MESSAGE,
   ADD_NEW_LINK_SNIPPET,
@@ -18,14 +19,21 @@ import {
 
 const initialState = {
   messages: [],
-  badgeCount: 0
+  badgeCount: 0,
+  newMessageText: ""
 };
 
 const messagesReducer = {
+  [SAVE_WORKING_MESSAGE]: (state: MessagesState, { text }) => {
+    console.log('new mess', text)
+    return { ...state, newMessageText: text }
+    //({ ...state, newMessageText: newmes })
+  },
+
   [ADD_NEW_USER_MESSAGE]: (state: MessagesState, { text, id }) =>
     ({ ...state, messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.CLIENT, id)] }),
 
-  [ADD_NEW_RESPONSE_MESSAGE]: (state: MessagesState, { text, id }) => 
+  [ADD_NEW_RESPONSE_MESSAGE]: (state: MessagesState, { text, id }) =>
     ({ ...state, messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.RESPONSE, id)], badgeCount: state.badgeCount + 1 }),
 
   [ADD_NEW_LINK_SNIPPET]: (state: MessagesState, { link, id }) =>

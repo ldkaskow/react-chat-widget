@@ -3,6 +3,7 @@ import { ElementType } from 'react';
 import { LinkParams, FullscreenPreviewState } from '../types';
 
 export const TOGGLE_CHAT = 'BEHAVIOR/TOGGLE_CHAT';
+export const TOGGLE_EMOJI = 'BEHAVIOR/TOGGLE_EMOJI';
 export const TOGGLE_INPUT_DISABLED = 'BEHAVIOR/TOGGLE_INPUT_DISABLED';
 export const TOGGLE_MESSAGE_LOADER = 'BEHAVIOR/TOGGLE_MSG_LOADER';
 export const SET_BADGE_COUNT = 'BEHAVIOR/SET_BADGE_COUNT';
@@ -17,9 +18,19 @@ export const MARK_ALL_READ = 'MESSAGES/MARK_ALL_READ';
 export const SET_QUICK_BUTTONS = 'SET_QUICK_BUTTONS';
 export const OPEN_FULLSCREEN_PREVIEW = 'FULLSCREEN/OPEN_PREVIEW';
 export const CLOSE_FULLSCREEN_PREVIEW = 'FULLSCREEN/CLOSE_PREVIEW';
+export const SAVE_WORKING_MESSAGE = 'MESSAGES/SAVE_WORKING_MESSAGE';
+
+export interface SaveWorkingMessage {
+  type: typeof SAVE_WORKING_MESSAGE;
+  text: string;
+}
 
 export interface ToggleChat {
   type: typeof TOGGLE_CHAT;
+}
+
+export interface ToggleEmoji {
+  type: typeof TOGGLE_EMOJI;
 }
 
 export interface ToggleInputDisabled {
@@ -85,9 +96,9 @@ export interface MarkAllMessagesRead {
   type: typeof MARK_ALL_READ;
 }
 
-export type BehaviorActions = ToggleChat | ToggleInputDisabled | ToggleMsgLoader;
+export type BehaviorActions = ToggleChat | ToggleEmoji | ToggleInputDisabled | ToggleMsgLoader;
 
-export type MessagesActions = AddUserMessage | AddResponseMessage | AddLinkSnippet | RenderCustomComponent
+export type MessagesActions = SaveWorkingMessage | AddUserMessage | AddResponseMessage | AddLinkSnippet | RenderCustomComponent
                               | DropMessages | HideAvatar | DeleteMessages | MarkAllMessagesRead | SetBadgeCount;
 
 export type QuickButtonsActions = SetQuickButtons;

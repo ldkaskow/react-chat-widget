@@ -3,9 +3,22 @@ import { ElementType } from 'react';
 import * as actionsTypes from './types';
 import { LinkParams, ImageState } from '../types';
 
+export function saveWorkingMessage(text: string): actionsTypes.SaveWorkingMessage {
+  return {
+    type: actionsTypes.SAVE_WORKING_MESSAGE,
+    text
+  };
+}
+
 export function toggleChat(): actionsTypes.ToggleChat {
   return {
     type: actionsTypes.TOGGLE_CHAT
+  };
+}
+
+export function toggleEmoji(): actionsTypes.ToggleEmoji {
+  return {
+    type: actionsTypes.TOGGLE_EMOJI
   };
 }
 

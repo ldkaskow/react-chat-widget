@@ -1,7 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleChat, addUserMessage } from '../../store/actions';
+import { GlobalState } from 'src/store/types';
+
+import { toggleChat, toggleEmoji, addUserMessage, saveWorkingMessage } from '../../store/actions';
 import { AnyFunction } from '../../utils/types';
 
 import WidgetLayout from './layout';
@@ -54,9 +56,19 @@ function Widget({
   handleSubmit
 }: Props) {
   const dispatch = useDispatch();
+  const showEmojiTray = useSelector((state: GlobalState) => state.behavior.showEmojiTray)
 
   const toggleConversation = () => {
     dispatch(toggleChat());
+  }
+
+  const toggleEmojiTray = () => {
+    dispatch(toggleEmoji());
+  }
+
+  const saveWorkingMessagee = msg => {
+    console.log('sv', msg)
+    dispatch(saveWorkingMessage(msg));
   }
 
   const handleMessageSubmit = (event) => {
@@ -70,6 +82,12 @@ function Widget({
     handleSubmit?.(userInput);
     dispatch(addUserMessage(userInput));
     handleNewUserMessage(userInput);
+    // close emoji tray after sending message if open
+    if (showEmojiTray) {
+      toggleEmojiTray();
+    }
+    // empty new message bar
+    saveWorkingMessagee('');
     event.target.message.value = '';
   }
 
@@ -81,6 +99,8 @@ function Widget({
   return (
     <WidgetLayout
       onToggleConversation={toggleConversation}
+      onToggleEmojiTray={toggleEmojiTray}
+      onSaveNewMessageState={saveWorkingMessagee}
       onSendMessage={handleMessageSubmit}
       handleClickAttachmentLauncher={handleClickAttachmentLauncher}
       onQuickButtonClicked={onQuickButtonClicked}

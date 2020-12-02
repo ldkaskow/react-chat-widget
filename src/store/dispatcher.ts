@@ -28,6 +28,14 @@ export function toggleWidget() {
   store.dispatch(actions.toggleChat());
 }
 
+export function toggleEmoji() {
+  store.dispatch(actions.toggleEmoji());
+}
+
+export function saveWorkingMessage(text: string) {
+  store.dispatch(actions.saveWorkingMessage(text));
+}
+
 export function toggleInputDisabled() {
   store.dispatch(actions.toggleInputDisabled());
 }

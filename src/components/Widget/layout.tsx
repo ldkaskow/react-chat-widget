@@ -19,6 +19,8 @@ type Props = {
   onSendMessage: AnyFunction;
   handleClickAttachmentLauncher?: AnyFunction;
   onToggleConversation: AnyFunction;
+  onToggleEmojiTray: AnyFunction;
+  onSaveNewMessageState: AnyFunction;
   senderPlaceHolder: string;
   onQuickButtonClicked: AnyFunction;
   profileAvatar?: string;
@@ -43,6 +45,8 @@ function WidgetLayout({
   onSendMessage,
   handleClickAttachmentLauncher,
   onToggleConversation,
+  onToggleEmojiTray,
+  onSaveNewMessageState,
   senderPlaceHolder,
   onQuickButtonClicked,
   profileAvatar,
@@ -124,6 +128,8 @@ function WidgetLayout({
           senderPlaceHolder={senderPlaceHolder}
           profileAvatar={profileAvatar}
           toggleChat={onToggleConversation}
+          toggleEmojiTray={onToggleEmojiTray}
+          saveNewMessageState={onSaveNewMessageState}
           showCloseButton={showCloseButton}
           disabledInput={dissableInput}
           autofocus={autofocus}

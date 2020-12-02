@@ -21,6 +21,8 @@ type Props = {
   sendMessage: AnyFunction;
   handleClickAttachmentLauncher?: AnyFunction;
   toggleChat: AnyFunction;
+  toggleEmojiTray: AnyFunction;
+  saveNewMessageState: AnyFunction;
   profileAvatar?: string;
   titleAvatar?: string;
   onQuickButtonClicked?: AnyFunction;
@@ -40,6 +42,8 @@ function Conversation({
   sendMessage,
   handleClickAttachmentLauncher,
   toggleChat,
+  toggleEmojiTray,
+  saveNewMessageState,
   profileAvatar,
   titleAvatar,
   onQuickButtonClicked,
@@ -66,6 +70,8 @@ function Conversation({
         onTextInputChange={onTextInputChange}
         buttonAlt={sendButtonAlt}
         handleClickAttachmentLauncher={handleClickAttachmentLauncher}
+        toggleEmojiTray={toggleEmojiTray}
+        saveNewMessageState={saveNewMessageState}
       />
     </div>
   );
