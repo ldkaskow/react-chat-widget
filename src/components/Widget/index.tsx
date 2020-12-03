@@ -76,6 +76,8 @@ function Widget({
     event.preventDefault();
     const userInput = event.target.message.value;
 
+    console.log('suppress', suppressAutoMessageDispatch)
+
     if (!userInput.trim()) {
       return;
     }
