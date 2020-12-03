@@ -30,6 +30,7 @@ type Props = {
   imagePreview?: boolean;
   zoomStep?: number;
   handleSubmit?: AnyFunction;
+  suppressAutoMessageDispatch: boolean;
 }
 
 function Widget({
@@ -53,7 +54,8 @@ function Widget({
   showTimeStamp,
   imagePreview,
   zoomStep,
-  handleSubmit
+  handleSubmit,
+  suppressAutoMessageDispatch
 }: Props) {
   const dispatch = useDispatch();
   const showEmojiTray = useSelector((state: GlobalState) => state.behavior.showEmojiTray)
@@ -79,7 +81,11 @@ function Widget({
     }
 
     handleSubmit?.(userInput);
-    dispatch(addUserMessage(userInput));
+    // if user has indicated in props
+    // do not automatically post the user message to chat - want to use a custom crafted message in our widget
+    if (!suppressAutoMessageDispatch) {
+      dispatch(addUserMessage(userInput));
+    }
     handleNewUserMessage(userInput);
     // close emoji tray after sending message if open
     if (showEmojiTray) {
