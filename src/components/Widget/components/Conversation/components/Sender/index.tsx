@@ -91,10 +91,7 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
           // submit on enter key
           if (e.keyCode == 13 && e.shiftKey == false) {
             e.preventDefault();
-            if (formRef === null || formRef.current === null) {
-            } else {
-                formRef.current.dispatchEvent(new Event("submit"));
-            }
+            formRef.current.dispatchEvent(new Event("submit", {cancelable: true}));
           }
         }}
       />
