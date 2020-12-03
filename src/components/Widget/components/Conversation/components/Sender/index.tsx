@@ -38,6 +38,8 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
   // @ts-ignore
   useEffect(() => { if (showChat) inputRef.current?.focus(); }, [showChat]);
 
+  let messageBarHeight = formRef !== null && formRef.current !== null ? formRef.current['clientHeight'] : 55;
+
   return (
     <form
       className="rcw-sender"
@@ -55,7 +57,7 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
           <NimblePicker
             set='google'
             data={data}
-            style={{position: 'absolute', bottom: `${formRef!.current!['clientHeight']}px`, left: '0px', width: '100%'}}
+            style={{position: 'absolute', bottom: `${messageBarHeight}px`, left: '0px', width: '100%'}}
             showPreview={false}
             emojiTooltip={true}
             skin={1}
@@ -84,11 +86,11 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
         autoComplete="off"
         value={newmessage}
         onClick={()=>{
-          let cursorPosition = inputRef!.current!['selectionStart']
+          let cursorPosition = inputRef !== null && inputRef.current !== null ? inputRef.current['selectionStart'] : 0
           saveNewMessageState(newmessage, cursorPosition)
         }}
         onChange={e=>{
-          let cursorPosition = inputRef!.current!['selectionStart']
+          let cursorPosition = inputRef !== null && inputRef.current !== null ? inputRef.current['selectionStart'] : 0
           saveNewMessageState(e.target.value, cursorPosition)
         }}
         onKeyDown={e=>{
