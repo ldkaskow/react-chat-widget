@@ -48,6 +48,7 @@ export interface MessagesState {
   messages: (Message | Link | CustomCompMessage)[];
   badgeCount: number;
   newMessageText: string;
+  cursorPosition: number;
 }
 
 export interface QuickButtonsState {

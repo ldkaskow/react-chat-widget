@@ -32,14 +32,19 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
   const newmessage = useSelector((state: GlobalState) => state.messages.newMessageText)
   const cursorPos = useSelector((state: GlobalState) => state.messages.cursorPosition)
 
-  console.log(cursorPos)
-
   const inputRef = useRef(null);
+  const formRef = useRef(null);
+
   // @ts-ignore
   useEffect(() => { if (showChat) inputRef.current?.focus(); }, [showChat]);
 
   return (
-    <form className="rcw-sender" onSubmit={sendMessage} style={{position: 'relative'}}>
+    <form
+      className="rcw-sender"
+      onSubmit={sendMessage}
+      style={{position: 'relative'}}
+      ref={formRef}
+    >
       <FaRegSmile
         onClick={toggleEmojiTray}
         style={{width: '30px', padding: '0px 5px', height: '30px', cursor: 'pointer'}}
@@ -50,7 +55,7 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
           <NimblePicker
             set='google'
             data={data}
-            style={{position: 'absolute', bottom: '55px', left: '0px', width: '100%'}}
+            style={{position: 'absolute', bottom: `${formRef!.current!['clientHeight']}px`, left: '0px', width: '100%'}}
             showPreview={false}
             emojiTooltip={true}
             skin={1}
@@ -58,13 +63,8 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
             emojiSize={26}
             theme='light'
             onSelect={em=>{
-              // update the working message with emoji at active cursor position
-              let cursorPosition = inputRef.current.selectionStart
-              let textBeforeCursorPosition = newmessage.substring(0, cursorPosition)
-              let textAfterCursorPosition = newmessage.substring(cursorPosition, newmessage.length)
-              let updatedMsg = textBeforeCursorPosition + em.native + textAfterCursorPosition
-
-              saveNewMessageState(updatedMsg, cursorPosition);
+              let updatedMsg = [newmessage.slice(0, cursorPos), em.native, newmessage.slice(cursorPos)].join('')
+              saveNewMessageState(updatedMsg, cursorPos+em.native.length);
             }}
           />
         )
@@ -79,10 +79,27 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
         autoFocus={autofocus}
         autoComplete="off"
         value={newmessage}
-        onChange={e=>{saveNewMessageState(e.target.value)}}
+        onClick={()=>{
+          let cursorPosition = inputRef!.current!['selectionStart']
+          saveNewMessageState(newmessage, cursorPosition)
+        }}
+        onChange={e=>{
+          let cursorPosition = inputRef!.current!['selectionStart']
+          saveNewMessageState(e.target.value, cursorPosition)
+        }}
+        onKeyDown={e=>{
+          // submit on enter key
+          if (e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            if (formRef === null || formRef.current === null) {
+            } else {
+                formRef.current.dispatchEvent(new Event("submit"));
+            }
+          }
+        }}
       />
 
-      <FiPaperclip style={{width: '30px', padding: '0px 5px', height: '25px', cursor: 'pointer'}} onClick={handleClickAttachmentLauncher} />
+      <FiPaperclip style={{width: '30px', padding: '0px 5px', height: '30px', cursor: 'pointer'}} onClick={handleClickAttachmentLauncher} />
       <button type="submit" className="rcw-send">
         <img src={send} className="rcw-send-icon" alt={buttonAlt} />
       </button>

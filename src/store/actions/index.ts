@@ -3,10 +3,11 @@ import { ElementType } from 'react';
 import * as actionsTypes from './types';
 import { LinkParams, ImageState } from '../types';
 
-export function saveWorkingMessage(text: string): actionsTypes.SaveWorkingMessage {
+export function saveWorkingMessage(text: string, cursorPosition: number): actionsTypes.SaveWorkingMessage {
   return {
     type: actionsTypes.SAVE_WORKING_MESSAGE,
-    text
+    text,
+    cursorPosition
   };
 }
 

@@ -32,8 +32,8 @@ export function toggleEmoji() {
   store.dispatch(actions.toggleEmoji());
 }
 
-export function saveWorkingMessage(text: string) {
-  store.dispatch(actions.saveWorkingMessage(text));
+export function saveWorkingMessage(text: string, cursorPosition: number) {
+  store.dispatch(actions.saveWorkingMessage(text, cursorPosition));
 }
 
 export function toggleInputDisabled() {

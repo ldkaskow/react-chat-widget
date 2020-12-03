@@ -23,6 +23,7 @@ export const SAVE_WORKING_MESSAGE = 'MESSAGES/SAVE_WORKING_MESSAGE';
 export interface SaveWorkingMessage {
   type: typeof SAVE_WORKING_MESSAGE;
   text: string;
+  cursorPosition: number;
 }
 
 export interface ToggleChat {

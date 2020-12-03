@@ -20,15 +20,13 @@ import {
 const initialState = {
   messages: [],
   badgeCount: 0,
-  newMessageText: ""
+  newMessageText: "",
+  cursorPosition: 0
 };
 
 const messagesReducer = {
-  [SAVE_WORKING_MESSAGE]: (state: MessagesState, { text }) => {
-    console.log('new mess', text)
-    return { ...state, newMessageText: text }
-    //({ ...state, newMessageText: newmes })
-  },
+  [SAVE_WORKING_MESSAGE]: (state: MessagesState, { text, cursorPosition }) =>
+    ({ ...state, newMessageText: text, cursorPosition: cursorPosition }),
 
   [ADD_NEW_USER_MESSAGE]: (state: MessagesState, { text, id }) =>
     ({ ...state, messages: [...state.messages, createNewMessage(text, MESSAGE_SENDER.CLIENT, id)] }),

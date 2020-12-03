@@ -66,9 +66,8 @@ function Widget({
     dispatch(toggleEmoji());
   }
 
-  const saveWorkingMessagee = msg => {
-    console.log('sv', msg)
-    dispatch(saveWorkingMessage(msg));
+  const saveWorkingMessagee = (msg, cursorPos) => {
+    dispatch(saveWorkingMessage(msg, cursorPos));
   }
 
   const handleMessageSubmit = (event) => {
@@ -87,7 +86,7 @@ function Widget({
       toggleEmojiTray();
     }
     // empty new message bar
-    saveWorkingMessagee('');
+    saveWorkingMessagee('', 0);
     event.target.message.value = '';
   }
 
