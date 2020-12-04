@@ -21,6 +21,7 @@ type Props = {
   onToggleConversation: AnyFunction;
   onToggleEmojiTray: AnyFunction;
   onSaveNewMessageState: AnyFunction;
+  suppressAutoMessageDispatch: boolean;
   senderPlaceHolder: string;
   onQuickButtonClicked: AnyFunction;
   profileAvatar?: string;
@@ -47,6 +48,7 @@ function WidgetLayout({
   onToggleConversation,
   onToggleEmojiTray,
   onSaveNewMessageState,
+  suppressAutoMessageDispatch,
   senderPlaceHolder,
   onQuickButtonClicked,
   profileAvatar,
@@ -61,7 +63,7 @@ function WidgetLayout({
   sendButtonAlt,
   showTimeStamp,
   imagePreview,
-  zoomStep,
+  zoomStep
 }: Props) {
   const dispatch = useDispatch();
   const { dissableInput, showChat, visible } = useSelector((state: GlobalState) => ({

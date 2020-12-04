@@ -29,7 +29,7 @@ type Props = {
   imagePreview?: boolean;
   zoomStep?: number;
   handleSubmit?: AnyFunction;
-  suppressAutoMessageDispatch?: boolean;
+  suppressAutoMessageDispatch: boolean;
 } & typeof defaultProps;
 
 function ConnectedWidget({
@@ -99,8 +99,7 @@ const defaultProps = {
   sendButtonAlt: 'Send',
   showTimeStamp: true,
   imagePreview: false,
-  zoomStep: 80,
-  suppressAutoMessageDispatch: false
+  zoomStep: 80
 };
 ConnectedWidget.defaultProps = defaultProps;
 
