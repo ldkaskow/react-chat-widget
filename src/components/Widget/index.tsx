@@ -58,7 +58,7 @@ function Widget({
   suppressAutoMessageDispatch
 }: Props) {
   const dispatch = useDispatch();
-  const showEmojiTray = useSelector((state: GlobalState) => state.behavior.showEmojiTray)
+  const showEmojiTray = useSelector((state: GlobalState) => state.messages.showEmojiTray)
 
   const toggleConversation = () => {
     dispatch(toggleChat());

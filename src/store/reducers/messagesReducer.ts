@@ -5,6 +5,7 @@ import { createNewMessage, createLinkSnippet, createComponentMessage } from '../
 import { MESSAGE_SENDER } from '../../constants';
 import {
   MessagesActions,
+  TOGGLE_EMOJI,
   SAVE_WORKING_MESSAGE,
   ADD_NEW_USER_MESSAGE,
   ADD_NEW_RESPONSE_MESSAGE,
@@ -21,10 +22,13 @@ const initialState = {
   messages: [],
   badgeCount: 0,
   newMessageText: "",
-  cursorPosition: 0
+  cursorPosition: 0,
+  showEmojiTray: false
 };
 
 const messagesReducer = {
+  [TOGGLE_EMOJI]: (state: MessagesState) => ({ ...state, showEmojiTray: !state.showEmojiTray}),
+
   [SAVE_WORKING_MESSAGE]: (state: MessagesState, { text, cursorPosition }) =>
     ({ ...state, newMessageText: text, cursorPosition: cursorPosition }),
 
@@ -40,7 +44,7 @@ const messagesReducer = {
   [ADD_COMPONENT_MESSAGE]: (state: MessagesState, { component, props, showAvatar, id }) =>
     ({ ...state, messages: [...state.messages, createComponentMessage(component, props, showAvatar, id)] }),
 
-  [DROP_MESSAGES]: (state: MessagesState) => ({ ...state, messages: [], newMessageText: "", cursorPosition: 0 }),
+  [DROP_MESSAGES]: (state: MessagesState) => ({ ...state, messages: [], newMessageText: "", cursorPosition: 0, showEmojiTray: false }),
 
   [HIDE_AVATAR]: (state: MessagesState, { index }) => state.messages[index].showAvatar = false,
 

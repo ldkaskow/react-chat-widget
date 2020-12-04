@@ -39,7 +39,6 @@ export interface CustomCompMessage extends BaseMessage {
 
 export interface BehaviorState {
   showChat: boolean;
-  showEmojiTray: boolean;
   disabledInput: boolean;
   messageLoader: boolean;
 };
@@ -49,6 +48,7 @@ export interface MessagesState {
   badgeCount: number;
   newMessageText: string;
   cursorPosition: number;
+  showEmojiTray: boolean;
 }
 
 export interface QuickButtonsState {

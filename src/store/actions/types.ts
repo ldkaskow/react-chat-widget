@@ -3,7 +3,7 @@ import { ElementType } from 'react';
 import { LinkParams, FullscreenPreviewState } from '../types';
 
 export const TOGGLE_CHAT = 'BEHAVIOR/TOGGLE_CHAT';
-export const TOGGLE_EMOJI = 'BEHAVIOR/TOGGLE_EMOJI';
+export const TOGGLE_EMOJI = 'MESSAGES/TOGGLE_EMOJI';
 export const TOGGLE_INPUT_DISABLED = 'BEHAVIOR/TOGGLE_INPUT_DISABLED';
 export const TOGGLE_MESSAGE_LOADER = 'BEHAVIOR/TOGGLE_MSG_LOADER';
 export const SET_BADGE_COUNT = 'BEHAVIOR/SET_BADGE_COUNT';
@@ -97,9 +97,9 @@ export interface MarkAllMessagesRead {
   type: typeof MARK_ALL_READ;
 }
 
-export type BehaviorActions = ToggleChat | ToggleEmoji | ToggleInputDisabled | ToggleMsgLoader;
+export type BehaviorActions = ToggleChat | ToggleInputDisabled | ToggleMsgLoader;
 
-export type MessagesActions = SaveWorkingMessage | AddUserMessage | AddResponseMessage | AddLinkSnippet | RenderCustomComponent
+export type MessagesActions = ToggleEmoji | SaveWorkingMessage | AddUserMessage | AddResponseMessage | AddLinkSnippet | RenderCustomComponent
                               | DropMessages | HideAvatar | DeleteMessages | MarkAllMessagesRead | SetBadgeCount;
 
 export type QuickButtonsActions = SetQuickButtons;

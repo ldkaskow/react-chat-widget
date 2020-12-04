@@ -28,7 +28,7 @@ type Props = {
 
 function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInputChange, buttonAlt, handleClickAttachmentLauncher, toggleEmojiTray, saveNewMessageState }: Props) {
   const showChat = useSelector((state: GlobalState) => state.behavior.showChat);
-  const showEmojiTray = useSelector((state: GlobalState) => state.behavior.showEmojiTray)
+  const showEmojiTray = useSelector((state: GlobalState) => state.messages.showEmojiTray)
   const newmessage = useSelector((state: GlobalState) => state.messages.newMessageText)
   const cursorPos = useSelector((state: GlobalState) => state.messages.cursorPosition)
 
@@ -61,7 +61,7 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
             showPreview={false}
             emojiTooltip={true}
             skin={1}
-            enableFrequentEmojiSort={true}
+            enableFrequentEmojiSort={false}
             emojiSize={26}
             theme='light'
             onSelect={em=>{
