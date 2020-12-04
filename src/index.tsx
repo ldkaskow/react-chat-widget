@@ -56,6 +56,7 @@ function ConnectedWidget({
   handleSubmit,
   suppressAutoMessageDispatch
 }: Props) {
+  console.log('supp', suppressAutoMessageDispatch)
   return (
     <Provider store={store}>
       <Widget
@@ -99,7 +100,8 @@ const defaultProps = {
   sendButtonAlt: 'Send',
   showTimeStamp: true,
   imagePreview: false,
-  zoomStep: 80
+  zoomStep: 80,
+  suppressAutoMessageDispatch: true
 };
 ConnectedWidget.defaultProps = defaultProps;
 
