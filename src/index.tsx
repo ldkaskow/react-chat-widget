@@ -101,7 +101,7 @@ const defaultProps = {
   showTimeStamp: true,
   imagePreview: false,
   zoomStep: 80,
-  suppressAutoMessageDispatch: true
+  suppressAutoMessageDispatch: false
 };
 ConnectedWidget.defaultProps = defaultProps;
 
