@@ -56,7 +56,6 @@ function ConnectedWidget({
   handleSubmit,
   suppressAutoMessageDispatch
 }: Props) {
-  console.log('supp', suppressAutoMessageDispatch)
   return (
     <Provider store={store}>
       <Widget

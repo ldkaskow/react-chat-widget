@@ -65,10 +65,11 @@ function Sender({ sendMessage, placeholder, disabledInput, autofocus, onTextInpu
             emojiSize={26}
             theme='light'
             onSelect={em=>{
-              let sym = em.unified.split('-')
-              let codesArray = []
-              sym.forEach(el => codesArray.push('0x' + el))
-              let emoji = String.fromCodePoint(...codesArray)
+              //let sym = em.unified.split('-')
+              //let codesArray = []
+              //sym.forEach(el => codesArray.push('0x' + el))
+              //let emoji = String.fromCodePoint(...codesArray)
+              let emoji = em.native
               let updatedMsg = [newmessage.slice(0, cursorPos), emoji, newmessage.slice(cursorPos)].join('')
               saveNewMessageState(updatedMsg, cursorPos+emoji.length);
             }}
